@@ -36,3 +36,18 @@ jobs:
         run: cmake --build build --config Release --target RUN_TESTS -v -- /maxcpucount
       - name: Install
         run: cmake --build build --config Release --target INSTALL -v -- /maxcpucount
+      - name: prepare OR-Tools dotnet
+        shell: bash
+        run: |
+          cd ./build/dotnet/packages/
+          mkdir /test/
+          cp Google.OrTools.*.nupkg /test/
+          cp Google.OrTools.runtime.*.nupkg /test/
+          ARCHIVE_NAME="test.zip"
+          ARCHIVE_PATH=/test/
+          zip -r "${ARCHIVE_PATH}" "${ARCHIVE_NAME}"
+      - name: Upload OR-Tools dotnet artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: test-release
+          path: /test/test.zip
