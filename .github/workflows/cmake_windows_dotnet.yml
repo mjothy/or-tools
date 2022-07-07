@@ -40,10 +40,10 @@ jobs:
         shell: bash
         run: |
           cd ./build/dotnet/packages/
-          mkdir /test/
-          cp Google.OrTools.*.nupkg /test/
-          cp Google.OrTools.runtime.*.nupkg /test/
-          powershell Compress-Archive -Path "/test/" -DestinationPath "/test/test.zip"
+          mkdir "C:/Program Files/Git/test/"
+          cp Google.OrTools.*.nupkg "C:/Program Files/Git/test/"
+          cp Google.OrTools.runtime.*.nupkg "C:/Program Files/Git/test/"
+          powershell Compress-Archive -Path "C:/Program Files/Git/test/" -DestinationPath "C:/Program Files/Git/test/test.zip"
       - name: Upload OR-Tools dotnet artifact
         uses: actions/upload-artifact@v2
         with:
