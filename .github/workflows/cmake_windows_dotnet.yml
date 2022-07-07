@@ -43,7 +43,7 @@ jobs:
           mkdir /test/
           cp Google.OrTools.*.nupkg /test/
           cp Google.OrTools.runtime.*.nupkg /test/
-          powershell Compress-Archive /test/ /test/test.zip
+          powershell Compress-Archive -Path /test/ -DestinationPath /test/test.zip
       - name: Upload OR-Tools dotnet artifact
         uses: actions/upload-artifact@v2
         with:
